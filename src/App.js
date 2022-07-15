@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { request } from "graphql-request";
 import { API_URL } from "./.env";
+import Post from "./components/Post";
 
 const QUERY = `{
     posts {
@@ -9,9 +10,15 @@ const QUERY = `{
       title
       content
       creationDate
+      coverPhoto{
+        url
+      }
       author {
         id
         nickname
+        avatar{
+            url
+        }
       }
     }
   }`;
@@ -27,10 +34,17 @@ function App() {
 
     useEffect(() => {
         fetchData(setPosts);
+        // console.log(posts);
     }, []);
 
-    console.log(posts);
-    return <div className="App"></div>;
+    return (
+        <div className="App">
+            {posts &&
+                posts.map((post) => (
+                    <Post title={post.title} content={post.content} key={post.id}/>
+                ))}
+        </div>
+    );
 }
 
 export default App;
