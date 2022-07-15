@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { request } from "graphql-request";
 import { API_URL } from "./.env";
 import Post from "./components/Post";
+import Header from "./components/header/Header";
 
 const QUERY = `{
     posts {
@@ -34,14 +35,19 @@ function App() {
 
     useEffect(() => {
         fetchData(setPosts);
-        // console.log(posts);
     }, []);
 
     return (
         <div className="App">
+            <Header />
+
             {posts &&
                 posts.map((post) => (
-                    <Post title={post.title} content={post.content} key={post.id}/>
+                    <Post
+                        title={post.title}
+                        content={post.content}
+                        key={post.id}
+                    />
                 ))}
         </div>
     );
