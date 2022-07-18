@@ -1,48 +1,28 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import Footer from "./layout/Footer/Footer";
-import Header from "./layout/Header/Header";
-
-const url = `https://62d28fe981cb1ecafa622983.mockapi.io/blog/posts`;
-
-export const getPosts = async (setPosts) => {
-    const { data } = await axios.get(url);
-    setPosts(data);
-};
-
-export const addPost = async (setPosts, posts, title, content) => {
-    const post = {
-        title,
-        content,
-        id: Date.now(),
-    };
-
-    await axios.post(url, post);
-
-    setPosts(posts);
-};
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Footer from "./components/Footer/Footer";
+import Header from "./components/Header/Header";
+import PostItem from "./components/PostItem/PostItem";
+import PostList from "./components/PostList/PostList";
+import Sidebar from "./components/Sidebar/Sidebar";
 
 function App() {
-    const [posts, setPosts] = useState({});
-
-    useEffect(() => {
-        getPosts(setPosts);
-    }, [setPosts]);
-
     return (
-        <div className="App">
-            <Header />
-            <h1>works</h1>
-            <button
-                variant="outlined"
-                onClick={() => addPost(setPosts, posts, "title 3", "content 3")}
-            >
-                add
-            </button>
+        <div className="wrapper">
+            <Header className="header" />
 
-            {posts.length > 0 &&
-                posts.map((i) => <h3 key={i.id}>{i.title}</h3>)}
-                <Footer />
+            <Sidebar className="sidebar" />
+
+            <main className="main">
+                <Routes>
+                    <Route path="/" element={<PostList />} />
+                    <Route path="/post/:id" element={<PostItem />} />
+                    {/* <Route path="/posts" element={<Posts />} /> */}
+                    {/* <Route path="*" element={<Page404 />} /> */}
+                </Routes>
+            </main>
+
+            <Footer className="footer" />
         </div>
     );
 }
