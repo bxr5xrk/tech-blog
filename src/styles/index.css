@@ -16,7 +16,9 @@ body {
 	min-height: 100vh;  
 	scroll-behavior: smooth;  
 	text-rendering: optimizeSpeed;  
-	line-height: 1.5;  
+	line-height: 1.5;
+    background-color: #0e1217;
+    color: white;
 }
 
 ul[class], ol[class] {  
@@ -40,3 +42,72 @@ input, button, textarea, select {
 	font: inherit;  
 }
 
+a, a::after {
+    text-decoration: none;
+    color: aliceblue;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: auto minmax(320px, 1200px) 230px auto ;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+    gap: 0 30px;
+    grid-template-areas:
+    "header header header header"
+    ". main sidebar  ."
+    "footer footer footer footer";
+}
+
+/* ==================== HEADER ==================== */
+.header {
+    grid-area: header;
+    height: 50px;
+    border-bottom: 1px solid rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    /* display: none; */
+}
+
+/* ==================== SIDEBAR ==================== */
+.sidebar {
+    grid-area: sidebar;
+}
+
+/* ==================== MAIN ==================== */
+.main {
+    grid-area: main;
+}
+
+/* ==================== FOOTER ==================== */
+.footer {
+    grid-area: footer;
+    height: 50px;
+    border-top: 1px solid rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+/* ==================== ADAPTIVE ==================== */
+@media (max-width: 765px) {
+    .wrapper {
+        grid-template-columns: minmax(320px, 1fr);
+        grid-template-areas:
+        "header"
+        "main"
+        "footer";
+    }
+    
+    .sidebar {
+        display: none;
+    }
+    /* .header {
+        display: block;
+    } */
+}
