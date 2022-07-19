@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import st from "./PostCard.module.css";
 
-const PostCard = ({ id, title, content, coverImageUrl }) => {
+const PostCard = ({ id, title, content, coverImageUrl, creationDate }) => {
     return (
         <Link to={`/post/${id}`}>
             <div className={st.post}>
@@ -13,6 +13,7 @@ const PostCard = ({ id, title, content, coverImageUrl }) => {
                 />
                 <h3 className={st.title}>{title}</h3>
                 <h4 className={st.content}>{content.slice(0, 90) + '...'}</h4>
+                <h4>{creationDate}</h4>
             </div>
         </Link>
     );

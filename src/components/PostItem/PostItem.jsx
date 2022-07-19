@@ -20,6 +20,7 @@ const PostItem = () => {
             />
             <h1 className={st.title}>{post.title}</h1>
             <p className={st.content}>{post.content}</p>
+            <p>{post.creationDate}</p>
         </article>
     );
 };

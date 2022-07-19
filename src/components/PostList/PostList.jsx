@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import React, { useEffect, useState } from "react";
 import { getPosts } from "../../api/PostService";
 import PostCard from "../PostCard/PostCard";
@@ -10,6 +11,7 @@ const PostList = () => {
         getPosts(setPosts);
     }, []);
 
+    console.log(format(new Date(), "dd.MM.yyyy"));
     return (
         <>
             {/* <button
@@ -20,13 +22,14 @@ const PostList = () => {
             <h1 className={st.title}>Posts</h1>
             <div className={st.posts}>
                 {posts.length > 0 &&
-                    posts.map((i) => (
+                    posts.map((item) => (
                         <PostCard
-                            key={i.id}
-                            id={i.id}
-                            title={i.title}
-                            coverImageUrl={i.coverImageUrl}
-                            content={i.content}
+                            key={item.id}
+                            id={item.id}
+                            title={item.title}
+                            coverImageUrl={item.coverImageUrl}
+                            content={item.content}
+                            creationDate={item.creationDate}
                         />
                     ))}
             </div>

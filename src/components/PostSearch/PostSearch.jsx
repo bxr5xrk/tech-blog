@@ -47,7 +47,6 @@ const PostSearch = () => {
                         ) : (
                             <p>{searchValue !== "" && "Нічого не знайдено"}</p>
                         )}
-                        {console.log(posts)}
                     </div>
                 </div>
             )}
