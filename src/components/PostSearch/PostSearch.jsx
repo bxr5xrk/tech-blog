@@ -6,13 +6,14 @@ import st from "./PostSearch.module.css";
 
 const PostSearch = () => {
     const [showModal, setShowModal] = useState(false);
-    const [posts, SetPosts] = useState([]);
+    const [posts, setPosts] = useState([]);
     const [searchValue, setSearchValue] = useState("");
     const delayedSearchValue = useDebounce(searchValue, 400);
     const inputRef = useRef();
 
     useEffect(() => {
-        findPosts(delayedSearchValue, SetPosts);
+        searchValue.length > 0 && findPosts(delayedSearchValue, setPosts);
+        delayedSearchValue === "" && setPosts([]);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [delayedSearchValue]);
 
@@ -35,14 +36,18 @@ const PostSearch = () => {
                         className={st.input}
                     />
                     <div className={st.dropdown}>
-                        {delayedSearchValue &&
+                        {searchValue.length > 0 && posts.length ? (
                             posts.map((i, count) => (
                                 <Link key={i.id} to={`/post/${i.id}`}>
                                     <p>
                                         {count + 1}. {i.title}
                                     </p>
                                 </Link>
-                            ))}
+                            ))
+                        ) : (
+                            <p>{searchValue !== "" && "Нічого не знайдено"}</p>
+                        )}
+                        {console.log(posts)}
                     </div>
                 </div>
             )}
