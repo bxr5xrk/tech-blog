@@ -8,7 +8,7 @@ import Sidebar from "./components/Sidebar/Sidebar";
 
 function App() {
     return (
-        <div className="wrapper">
+        <>
             <Header className="header" />
 
             <Sidebar className="sidebar" />
@@ -23,7 +23,7 @@ function App() {
             </main>
 
             <Footer className="footer" />
-        </div>
+        </>
     );
 }
 
