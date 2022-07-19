@@ -69,12 +69,23 @@ a, a::after {
     padding: 0 15px;
     justify-content: space-between;
     margin-bottom: 30px;
-    /* display: none; */
+}
+
+.header-two-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.login {
+    margin-left: 10px;
 }
 
 /* ==================== SIDEBAR ==================== */
 .sidebar {
     grid-area: sidebar;
+    display: flex;
+    flex-direction: column;
 }
 
 /* ==================== MAIN ==================== */
