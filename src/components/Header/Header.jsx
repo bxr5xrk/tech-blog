@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PostSearch from "../PostSearch/PostSearch";
 
 const Header = ({ ...props }) => {
     return (
@@ -7,8 +8,10 @@ const Header = ({ ...props }) => {
             <Link to="/">
                 <h3>TECH BLOG</h3>
             </Link>
-
-            <h3>login</h3>
+            <div className="header-two-section">
+                <PostSearch />
+                <h3 className="login">login</h3>
+            </div>
         </div>
     );
 };

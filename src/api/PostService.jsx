@@ -11,6 +11,11 @@ export const getPost = async (id, setPost) => {
     setPost(data);
 };
 
+export const findPosts = async (search, setPosts) => {
+    const { data } = await axios.get(URL + `/?title=${search}`);
+    setPosts(data);
+};
+
 export const addPost = async (setPosts, posts, title, content) => {
     const post = {
         title,
