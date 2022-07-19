@@ -1,9 +1,9 @@
 import axios from "axios";
 import { URL } from "../.config.js";
 
-export const getPosts = async (setPosts) => {
+export const getPosts = async () => {
     const { data } = await axios.get(URL);
-    setPosts(data);
+    return data;
 };
 
 export const getPost = async (id, setPost) => {

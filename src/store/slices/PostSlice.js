@@ -4,7 +4,7 @@ const initialState = {
     // categoryId: 0,
     // sortType: { name: "за популярністю", sortProp: "rating" },
     // page: 1,
-    posts: [{}],
+    posts: [],
 };
 
 // основна логіка
@@ -12,24 +12,14 @@ const PostSlice = createSlice({
     name: "posts",
     initialState,
     reducers: {
-        // першим передається наявний стан, наступним дія
-        // setCategoryId(state, action) {
-        //     // прирівняти categoryId до змінної що введе юзер
-        //     state.categoryId = action.payload;
-        // },
-
-        // setSortType(state, action) {
-        //     state.sortType = action.payload;
-        // },
-
-        // onChangePage(state, action) {
-        //     state.page = action.payload;
-        // },
+        setPosts(state, action) {
+            state.posts = action.payload;
+        },
     },
 });
 
-// експортуємо функції
-export const {  } = PostSlice.actions;
+export const { setPosts, setPost } = PostSlice.actions;
 
-// та сам редюсер
+export const getAllPosts = (state) => state.PostSlice.posts;
+
 export default PostSlice.reducer;

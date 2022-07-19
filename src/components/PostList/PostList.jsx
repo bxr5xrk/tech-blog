@@ -1,17 +1,21 @@
-import { format } from "date-fns";
+// import { format } from "date-fns";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../../api/PostService";
+import { getAllPosts, setPosts } from "../../store/slices/PostSlice";
 import PostCard from "../PostCard/PostCard";
 import st from "./PostList.module.css";
 
 const PostList = () => {
-    const [posts, setPosts] = useState([]);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        getPosts(setPosts);
+        getPosts().then((data) => dispatch(setPosts(data)));
     }, []);
 
-    console.log(format(new Date(), "dd.MM.yyyy"));
+    const posts = useSelector(getAllPosts);
+
+    // console.log(format(new Date(), "dd.MM.yyyy"));
     return (
         <>
             {/* <button

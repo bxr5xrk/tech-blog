@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
+import PostSlice from "./slices/PostSlice";
 
 export const store = configureStore({
     reducer: {
-        // імпортуємо наші slice's
-        
+        PostSlice
     },
 });
